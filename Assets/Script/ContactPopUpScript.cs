@@ -8,6 +8,7 @@ public class ContactPopUpScript : MonoBehaviour
 {
     public Text Name,Number;
     Button click;
+    Button Edit;
 
 
 
@@ -15,12 +16,14 @@ public class ContactPopUpScript : MonoBehaviour
     private void Start()
     {
         click = GetComponent<Button>();
+        Edit = GetComponent<Button>();
         click.onClick.AddListener(OnClick);
     }
 
     public void OnClick()
     {
-        //SaveManager.inst.ShowContacts();
+        SaveManager.inst.ShowContacts(this);
+
         UIManaager.instance.Shownextscreen(screenlist.ViewDetailsPage);
     }
 }

@@ -10,7 +10,7 @@ public class SaveManager : MonoBehaviour
 {
     [SerializeField] public bool isvalid; 
     public AppData appData;
-    public ContactList contacts1;
+    //public ContactList contacts1;
     [SerializeField]GameObject prefabeContact;
     [SerializeField] GameObject parentContent;
     string storeName, storeNum;
@@ -62,8 +62,8 @@ public class SaveManager : MonoBehaviour
 
     public void loginvalidation()
     {
-        UserData CurrentUser = appData.users.Find(u => u.userId == Login.inst.Userlogin.text);
-        if (CurrentUser != null && CurrentUser.password == Login.inst.passwordlogin.text) 
+        UserData CurrentUser = appData.users.Find(u => u.userId == Login.inst.Userlogin.text && u.password ==Login.inst.passwordlogin.text);
+        if (CurrentUser != null ) //&& CurrentUser.password == Login.inst.passwordlogin.text) 
         {
              isvalid = true;
             Username.inst.userName.text = CurrentUser.userId;
@@ -87,7 +87,7 @@ public class SaveManager : MonoBehaviour
     public void DisplayContactPrefabe()
     {
 
-        UserData CurrentUser = appData.users.Find(u => u.userId == Login.inst.Userlogin.text);
+        UserData CurrentUser = appData.users.Find(u => u.userId == Login.inst.Userlogin.text && u.password == Login.inst.passwordlogin.text);
         int count = CurrentUser.contactList.contacts.Count;
         for(int i = 0; i<count;i++)
         {
@@ -101,7 +101,7 @@ public class SaveManager : MonoBehaviour
 
     public void EditContact()
     {
-
+        
     }
 
     public void ShowContacts(ContactPopUpScript contact)
@@ -111,7 +111,6 @@ public class SaveManager : MonoBehaviour
         storeNum = contact.Number.text;
         ViewDetail.inst.ViewName.text = contact.Name.text;
         ViewDetail.inst.ViewContact.text = contact.Number.text;
-
 
     }
 
